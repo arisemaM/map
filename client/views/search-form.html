@@ -1,0 +1,37 @@
+<section>
+  <form name="form" method="GET" ng-submit="submitForm()">
+    <fieldset>
+      <legend>Search Form</legend>
+
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          <input type="text" placeholder="Street" ng-model="form.query.street" ng-required="true">
+          <p class="hint" ng-show="form.query.street.$error.required && submitted">
+            Please enter a place to search.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          <input type="text" placeholder="City" ng-model="form.query.city" ng-required="true">
+          <p class="hint" ng-show="form.query.city.$error.required && submitted">
+            Please enter a place to search.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          <input type="text" placeholder="ZipCode" ng-model="form.query.zipcode">
+        </div>
+      </div>
+
+      <div class="actions">
+        <label></label>
+        <button ng-disable="form.query.$invalid">Search</button>
+      </div>
+    </fieldset>
+  </form>
+<section>

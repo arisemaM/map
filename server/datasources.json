@@ -1,0 +1,129 @@
+{
+  "geo": {
+    "name": "geo",
+    "baseURL": "",
+    "crud": true,
+    "connector": "rest",
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://maps.googleapis.com/maps/api/geocode/{format=json}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "query": {
+            "address": "{street},{city}",
+            "sensor": "{sensor=true}"
+          },
+          "responsePath": "$.results[0]"
+        },
+        "functions": {
+          "placeLocate": [
+            "street",
+            "city"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://maps.googleapis.com/maps/api/place/nearbysearch/{format=json}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "query": {
+            "location": "{location=-33.8670522,151.1957362}",
+            "radius": "{radius=500}",
+            "key": "{key=AIzaSyBSwJoEX6wBpF5TaEOcNWBKSYa2YJ_8siw}"
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "nearbySearch": [
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://maps.googleapis.com/maps/api/place/textsearch/{format=json}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "query": {
+            "query": "{query}",
+            "key": "{key=AIzaSyBSwJoEX6wBpF5TaEOcNWBKSYa2YJ_8siw}"
+          },
+          "responsePath": "$.results[0]"
+        },
+        "functions": {
+          "textSearch": [
+            "query"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://maps.googleapis.com/maps/api/place/details/{format=json}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "query": {
+            "placeid": "{placeid}"
+          },
+          "responsePath": "$.result"
+        },
+        "functions": {
+          "placeDetails": [
+            "placeid"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://maps.googleapis.com/maps/api/place/queryautocomplete/{format=json}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "query": {
+            "input": "{input}"
+          },
+          "responsePath": "$.predictions"
+        },
+        "functions": {
+          "queryAutocomplete": [
+            "input"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://maps.googleapis.com/maps/api/place/autocomplete/{format=json}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "query": {
+            "input": "{input}",
+            "radius": "{radius=500}"
+          },
+          "responsePath": "$.predictions"
+        },
+        "functions": {
+          "autocomplete": [
+            "input"
+          ]
+        }
+      }
+    ]
+  }
+}
